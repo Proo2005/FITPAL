@@ -8,13 +8,13 @@ A modern fitness tracking web application with personalized workout plans, habit
 ## Screenshots & Demo
 
 ### 1. Home / Dashboard
-![Dashboard Screenshot](screenshots/home.png)
+![Dashboard Screenshot](front/screenshots/home.png)
 
 ### 2. Membership Plans
-![Membership Screenshot](screenshots/membership.png)
+![Membership Screenshot](front/screenshots/membership.png)
 
 ### 3. AI Chatbot
-![Chatbot Screenshot](screenshots/tracker.png)
+![Chatbot Screenshot](front/screenshots/tracker.png)
 
 
 
