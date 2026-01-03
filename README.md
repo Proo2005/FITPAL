@@ -5,6 +5,18 @@ A modern fitness tracking web application with personalized workout plans, habit
 ---
 
 ## Features
+## Screenshots & Demo
+
+### 1. Home / Dashboard
+![Dashboard Screenshot](screenshots/home.png)
+
+### 2. Membership Plans
+![Membership Screenshot](screenshots/membership.png)
+
+### 3. AI Chatbot
+![Chatbot Screenshot](screenshots/tracker.png)
+
+
 
 ### Frontend
 - Next.js + TypeScript + Tailwind CSS  
