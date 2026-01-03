@@ -36,11 +36,46 @@ A modern fitness tracking web application with personalized workout plans, habit
 ## Folder Structure
 
 ### Frontend
+/front
+├─ /app
+│ ├─ /components
+│ │ ├─ Navbar.tsx
+│ │ ├─ Footer.tsx
+│ ├─ /membership
+│ │ └─ page.tsx
+│ ├─ /chat
+│ │ └─ page.tsx
+│ ├─ /contact
+│ │ └─ page.tsx
+├─ package.json
+├─ next.config.js
+└─ .env.local
+
+### Backend
+/back
+├─ /controller
+│ ├─ workoutController.js
+│ ├─ prController.js
+│ ├─ habitController.js
+│ └─ chatController.js
+├─ /routes
+│ ├─ workoutRoutes.js
+│ ├─ prRoutes.js
+│ ├─ habitRoutes.js
+│ └─ chatRoutes.js
+├─ /lib
+│ ├─ mongodb.js
+│ ├─ razorpay.js
+│ └─ gemini.js
+├─ server.js
+├─ package.json
+└─ .env
+---
 
 
 ---
 
-## Setup Instructions
+## Setup
 
 ### Prerequisites
 - Node.js v20+  
@@ -53,12 +88,12 @@ A modern fitness tracking web application with personalized workout plans, habit
 
 ### Backend Setup
 
-1. Navigate to `/back`:
+1. Clone the repository and navigate to `/back`:
 
-```bash
 cd back
 npm install
 
+2. Create a .env.local file:
 
 create .env file
 MONGO_URI=your_mongodb_uri
@@ -70,7 +105,8 @@ EMAILJS_TEMPLATE_ID=your_emailjs_template
 EMAILJS_PUBLIC_KEY=your_emailjs_public_key
 
 
-start backend server 
+3. start backend server 
+
 node server.js
 Backend runs on http://localhost:5000.
 
