@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/app/components/Navbar";
 import { useState } from "react";
-
+import Footer from "@/app/components/Footer";
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
 
@@ -51,6 +51,7 @@ export default function AuthPage() {
           </p>
         </motion.div>
       </div>
+      <Footer/>
     </div>
   );
 }

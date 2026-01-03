@@ -1,5 +1,5 @@
 "use client";
-
+import Footer from "@/app/components/Footer";
 import { motion } from "framer-motion";
 import Navbar from "@/app/components/Navbar";
 
@@ -147,6 +147,7 @@ export default function AboutPage() {
           </p>
         </motion.div>
       </section>
+      <Footer />
     </div>
   );
 }

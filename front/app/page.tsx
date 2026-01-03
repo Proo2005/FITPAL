@@ -3,7 +3,7 @@
 import Navbar from "@/app/components/Navbar";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import Footer from "@/app/components/Footer";
 const images = [
   "https://images.unsplash.com/photo-1554284126-aa88f22d8b74",
   "https://images.unsplash.com/photo-1599058917212-d750089bc07e",
@@ -30,6 +30,37 @@ const stats = [
   { label: "Active Users", value: 480 },
   { label: "Total Hours", value: 890 },
 ];
+
+const handlePayment = async (plan: any) => {
+  const res = await fetch("http://localhost:5000/api/payment/create-order", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      amount: plan.price,
+      plan: plan.type,
+    }),
+  });
+
+  const order = await res.json();
+
+  const options = {
+    key: "rzp_test_xxxxx", // PUBLIC KEY ONLY
+    amount: order.amount,
+    currency: "INR",
+    name: "Fitness Tracker",
+    description: `${plan.type} Membership`,
+    order_id: order.id,
+    theme: { color: "#22d3ee" },
+    handler: function (response: any) {
+      alert("Payment successful!");
+      console.log(response);
+      // save membership in DB here
+    },
+  };
+
+  const razor = new (window as any).Razorpay(options);
+  razor.open();
+};
 
 export default function HomePage() {
   const [index, setIndex] = useState(0);
@@ -77,6 +108,15 @@ export default function HomePage() {
             className="mt-8 px-8 py-3 rounded-xl bg-cyan-400 text-black font-bold hover:brightness-110 transition bg-gradient-to-r from-pink-500 to-cyan-400"
           >
             <a href="/membership">Join us Now</a>
+
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0,255,255,0.4)" }}
+            onClick={() => handlePayment(plan)}
+            className="mt-8 ml-4 px-4 py-3 rounded-full  bg-cyan-400 text-black font-bold hover:brightness-110 transition bg-gradient-to-r from-pink-500 to-cyan-400"
+          >
+            <a href="/Ai">Ai</a>
+
           </motion.button>
         </div>
 
@@ -158,10 +198,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="mt-32 py-12 text-center glass-card border border-white/20 bg-white/5 backdrop-blur-2xl">
-        <p className="text-gray-400">&copy; 2026 FitPlatform. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }
