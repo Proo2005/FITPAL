@@ -24,3 +24,21 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer base {
+  body {
+    @apply bg-[#0F0F0F] text-zinc-300;
+  }
+}
+
+/* Custom Scrollbar for the Notion look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0F0F0F;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 10px;
+}
