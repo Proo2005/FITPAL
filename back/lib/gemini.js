@@ -1,38 +1,34 @@
-// backend/lib/gemini.js
-import fetch from "node-fetch"; // make sure node-fetch is installed
-import dotenv from "dotenv";
-dotenv.config();
+import fetch from "node-fetch";
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const API_KEY = process.env.GEMINI_API_KEY;
 
-if (!GEMINI_API_KEY) {
-  throw new Error("GEMINI_API_KEY missing in .env");
+export async function askGemini(prompt) {
+  const url =
+    "https://generativeai.googleapis.com/v1/models/gemini-1.5-flash:generateContent";
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-goog-api-key": API_KEY,
+    },
+    body: JSON.stringify({
+      contents: [
+        {
+          role: "user",
+          parts: [{ text: prompt }],
+        },
+      ],
+    }),
+  });
+
+  const data = await res.json();
+
+  console.log("🟢 Gemini raw response:", JSON.stringify(data, null, 2));
+
+  if (!data.candidates?.length) {
+    throw new Error("Empty Gemini response");
+  }
+
+  return data.candidates[0].content.parts[0].text;
 }
-
-const BASE_URL = "https://api.gemini.ai/v1"; // replace with your Gemini API endpoint
-
-const gemini = {
-  getAnswer: async (query) => {
-    const response = await fetch(`${BASE_URL}/chat`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${GEMINI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "gemini-1", // use your model
-        input: query,
-      }),
-    });
-
-    if (!response.ok) {
-      const text = await response.text();
-      throw new Error(`Gemini API error: ${text}`);
-    }
-
-    const data = await response.json();
-    return data.output?.[0]?.content || "Sorry, I could not answer that.";
-  },
-};
-
-export default gemini;

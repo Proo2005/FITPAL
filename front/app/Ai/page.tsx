@@ -32,7 +32,7 @@ export default function ChatPage() {
 
     try {
       // Call backend API to get Gemini AI response
-      const res = await fetch("/api/chat/gemini", {
+      const res = await fetch("http://localhost:5000/api/chat/gemini", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query: userMessage }),

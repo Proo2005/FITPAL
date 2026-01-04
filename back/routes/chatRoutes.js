@@ -1,10 +1,8 @@
-// backend/routes/chatRoutes.js
 import express from "express";
-import { handleChat } from "../controller/chatController.js";
+import { chatWithGemini } from "../controller/chatController.js";
 
 const router = express.Router();
 
-// POST /api/chat
-router.post("/", handleChat);
+router.post("/gemini", chatWithGemini);
 
 export default router;
